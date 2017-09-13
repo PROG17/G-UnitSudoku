@@ -11,6 +11,7 @@ namespace Sudoku
         static void Main(string[] args)
         {
             Console.WriteLine("Hej boys");
+            Console.WriteLine("Hoolllo!");
         }
     }
 }
