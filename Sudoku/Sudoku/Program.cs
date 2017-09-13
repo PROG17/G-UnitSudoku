@@ -10,10 +10,7 @@ namespace Sudoku
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hej boys");
-            Console.WriteLine("Hoolllo!");
-            Console.Write("Tjeeeeenörö");
-            Console.WriteLine("Tjena");
+            Board board = new Board("619030040270061008000047621486302079000014580031009060005720806320106057160400030");
         }
     }
 }
