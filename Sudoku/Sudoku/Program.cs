@@ -12,6 +12,7 @@ namespace Sudoku
         {
             Console.WriteLine("Hej boys");
             Console.WriteLine("Hoolllo!");
+            Console.WriteLine("Tjena");
         }
     }
 }
