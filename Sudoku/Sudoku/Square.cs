@@ -8,5 +8,10 @@ namespace Sudoku
 {
     class Square
     {
+        public int SquareValue { get; set; }
+        public Square(int number)
+        {
+            SquareValue = number;
+        } 
     }
 }
