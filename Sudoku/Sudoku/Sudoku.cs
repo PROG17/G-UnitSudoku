@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
-    class Suduko
+    class Sudoku
     {
         Board board;
 
-        public Suduko(string numbers)
+        public Sudoku(string numbers)
         {
             board = new Board(numbers);
 
