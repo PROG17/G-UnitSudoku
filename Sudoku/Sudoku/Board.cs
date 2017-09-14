@@ -64,7 +64,7 @@ namespace Sudoku
         }
         
         // Hittar alla befintliga nummer i box
-        public List<int> GetNumberInBox(int boxRow, int boxColumn)
+        public List<int> GetNumbersInBox(int boxRow, int boxColumn)
         {
             var numberList = new List<int>();
             for (int column = 3 * boxColumn; column < 3 * (boxColumn + 1); column++)

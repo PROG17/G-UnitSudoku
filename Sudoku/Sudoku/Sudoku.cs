@@ -36,7 +36,7 @@ namespace Sudoku
             board.PrintBoard();
         }
 
-        public bool CheckRows()
+        private bool CheckRows()
         {
             bool somethingChanged = false;
 
@@ -57,7 +57,7 @@ namespace Sudoku
             return somethingChanged;
         }
 
-        public bool CheckColumns() //Går igenom alla kolumner
+        private bool CheckColumns() //Går igenom alla kolumner
         {
             bool somethingChanged = false;
             for (int column = 0; column < 9; column++)
@@ -76,7 +76,7 @@ namespace Sudoku
             return somethingChanged;
         }
         
-        public bool CheckBoxes() //Går igenom alla "Boxar"
+        private bool CheckBoxes() //Går igenom alla "Boxar"
         {
             bool somethingChanged = false;
 
@@ -84,7 +84,7 @@ namespace Sudoku
             {
                 for (int boxColumn = 0; boxColumn < 3; boxColumn++) //går igenom boxKolumn 0-2
                 {
-                    List<int> numbers = board.GetNumberInBox(boxRow, boxColumn); //Hämtar alla nummer i specifik box
+                    List<int> numbers = board.GetNumbersInBox(boxRow, boxColumn); //Hämtar alla nummer i specifik box
 
                     for (int row = boxRow * 3; row < 3 * (boxRow + 1); row++) //Går igenom rader i boxen (bestäms av (boxRow + (modifier))
                     {
