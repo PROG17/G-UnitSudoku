@@ -63,6 +63,21 @@ namespace Sudoku
             Console.WriteLine("-------------------------");
         }
 
+        public List<int> GetNumberInBox(int boxRow, int boxColumn)
+        {
+            var numberList = new List<int>();
+            for (int column = 3 * boxColumn; column < 3 * (boxColumn + 1); column++)
+            {
+                for (int row = 3 * boxRow; row < 3 * (boxRow + 1); row++)
+                {
+                    if (squares[row, column].SquareValue != 0)
+                    {
+                        numberList.Add(squares[row, column].SquareValue);
+                    }
+                }
+            }
+            return numberList;
+        }
         public List<int> GetNumbersInRow(int row)
         {
             var numberList = new List<int>();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace Sudoku
                         }
                     }
                 }
-
+                
                 for (int column = 0; column < 9; column++)
                 {
                     List<int> numbers = board.GetNumbersInColumn(column);
@@ -45,6 +46,23 @@ namespace Sudoku
                         {
                             somethingChanged = true;
                         }
+                    }
+                }
+                for (int row = 0; row < 3; row++)
+                {
+                    for (int column = 0; column < 3; column++)
+                    {
+                        List<int> numbers = board.GetNumberInBox(row, column);
+                        for (int i = 0; i < 9; i++)
+                        {
+                            int r = row/3;
+                            int c = column % 3;
+                            if (board.SendNumbersToSquare(r, c, numbers))
+                            {
+                                somethingChanged = true;
+                            }
+                        }
+
                     }
                 }
             }
