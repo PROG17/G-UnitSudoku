@@ -16,7 +16,7 @@ namespace Sudoku
 
         public Board(string inputNumbers)
         {
-            //fill all the board positions with squares
+            //yller alla brädceller med nummer
             for (int row = 0; row < height; row++)
             {
                 for (int column = 0; column < width; column++)
@@ -29,7 +29,7 @@ namespace Sudoku
             }
         }
 
-        //Method that prints the suduko board to the console.
+        //Metod som printar hela sudokubrädet till konsolen
         public void PrintBoard()
         {
             for (int row = 0; row < height; row++)
@@ -62,7 +62,8 @@ namespace Sudoku
 
             Console.WriteLine("-------------------------");
         }
-
+        
+        // Hittar alla befintliga nummer i box
         public List<int> GetNumberInBox(int boxRow, int boxColumn)
         {
             var numberList = new List<int>();
@@ -72,7 +73,7 @@ namespace Sudoku
                 {
                     if (squares[row, column].SquareValue != 0)
                     {
-                        numberList.Add(squares[row, column].SquareValue);
+                        numberList.Add(squares[row, column].SquareValue); // Lägger till befintliga nummer i lista av upptagna nummer
                     }
                 }
             }
@@ -80,6 +81,7 @@ namespace Sudoku
             return numberList;
         }
 
+        //Hittar alla befintliga nummer i rad
         public List<int> GetNumbersInRow(int row)
         {
             var numberList = new List<int>();
@@ -87,13 +89,14 @@ namespace Sudoku
             {
                 if (squares[row, column].SquareValue != 0)
                 {
-                    numberList.Add(squares[row, column].SquareValue);
+                    numberList.Add(squares[row, column].SquareValue); // Lägger till befintliga nummer i lista av upptagna nummer
                 }
                 
             }
             return numberList;
         }
 
+        //Hittar alla befintliga nummer i kolumn
         public List<int> GetNumbersInColumn(int column)
         {
             var numberList = new List<int>();
@@ -101,7 +104,7 @@ namespace Sudoku
             {
                 if (squares[row, column].SquareValue != 0)
                 {
-                    numberList.Add(squares[row, column].SquareValue);
+                    numberList.Add(squares[row, column].SquareValue); // Lägger till befintliga nummer i lista av upptagna nummer
                 }
 
             }

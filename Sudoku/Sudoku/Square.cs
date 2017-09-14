@@ -11,17 +11,19 @@ namespace Sudoku
         private bool[] canBeNumber = new bool[9];
         public int SquareValue { get; set; }
         public bool IsSolved { get; private set; }
+
+        //Skapar varje ruta
         public Square(int number)
         {
             SquareValue = number;
-            if (SquareValue == 0)
+            if (SquareValue == 0) //om rutan är tom så är alla nummer "möjliga" att stoppas in
             {
                 for (int i = 0; i < canBeNumber.Length; i++)
                 {
                     canBeNumber[i] = true;
                 }
             }
-            else
+            else // annars är rutan löst
                 IsSolved = true;
         }
 
@@ -56,13 +58,14 @@ namespace Sudoku
                 }
             }
 
+            //Om det finns en lösning, ger vi rutan ett värde och sätter rutan som löst
             if(value != 0)
             {
                 SquareValue = value;
                 IsSolved = true;
             }
 
-            return somethingChanged;
+            return somethingChanged; //om något har ändrats flaggas det
         }
     }
 }

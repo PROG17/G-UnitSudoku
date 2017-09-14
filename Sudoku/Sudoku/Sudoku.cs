@@ -26,13 +26,13 @@ namespace Sudoku
 
                 // Testa logik per rad.
                 if (CheckRows()) somethingChanged = true;
-                // 
+                // Testa logik per kolumn
                 if (CheckColumns()) somethingChanged = true;
-
+                // Testa logik per "Box"
                 if (CheckBoxes()) somethingChanged = true;
 
             }
-
+            //Skriver ut lösta eller olösta brädet
             board.PrintBoard();
         }
 
@@ -57,7 +57,7 @@ namespace Sudoku
             return somethingChanged;
         }
 
-        public bool CheckColumns()
+        public bool CheckColumns() //Går igenom alla kolumner
         {
             bool somethingChanged = false;
             for (int column = 0; column < 9; column++)
@@ -65,7 +65,7 @@ namespace Sudoku
                 List<int> numbers = board.GetNumbersInColumn(column);
                 for (int row = 0; row < 9; row++)
                 {
-                    //om något ändrats kör loopen igen
+                    //om kolumnen redan fått mera information så har något ändrats
                     if (board.SendNumbersToSquare(row, column, numbers))
                     {
                         somethingChanged = true;
@@ -76,22 +76,22 @@ namespace Sudoku
             return somethingChanged;
         }
         
-        public bool CheckBoxes()
+        public bool CheckBoxes() //Går igenom alla "Boxar"
         {
             bool somethingChanged = false;
 
-            for (int boxRow = 0; boxRow < 3; boxRow++)
+            for (int boxRow = 0; boxRow < 3; boxRow++) //går igenom boxrad 0-2
             {
-                for (int boxColumn = 0; boxColumn < 3; boxColumn++)
+                for (int boxColumn = 0; boxColumn < 3; boxColumn++) //går igenom boxKolumn 0-2
                 {
-                    List<int> numbers = board.GetNumberInBox(boxRow, boxColumn);
+                    List<int> numbers = board.GetNumberInBox(boxRow, boxColumn); //Hämtar alla nummer i specifik box
 
-                    for (int row = boxRow * 3; row < 3 * (boxRow + 1); row++)
+                    for (int row = boxRow * 3; row < 3 * (boxRow + 1); row++) //Går igenom rader i boxen (bestäms av (boxRow + (modifier))
                     {
-                        for (int column = boxColumn * 3; column < 3 * (boxColumn + 1); column++)
+                        for (int column = boxColumn * 3; column < 3 * (boxColumn + 1); column++) //Går igenom kolumner i boxen
                         {
-
-                            if (board.SendNumbersToSquare(row, column, numbers))
+                            //send information till ruta och ses om något ändras
+                            if (board.SendNumbersToSquare(row, column, numbers)) 
                             {
                                 somethingChanged = true;
                             }
