@@ -24,6 +24,8 @@ namespace Sudoku
             else
                 IsSolved = true;
         }
+
+        //ta bort möjliga nummber från ruta
         public bool RemovePossibleNum(List<int> numbers)
         {
             bool someThingChanged = false;

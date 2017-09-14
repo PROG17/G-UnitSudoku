@@ -76,6 +76,7 @@ namespace Sudoku
             }
             return numberList;
         }
+
         public List<int> GetNumbersInColumn(int column)
         {
             var numberList = new List<int>();
@@ -90,6 +91,14 @@ namespace Sudoku
             return numberList;
         }
 
+        //skicka nummer som inte kan finnas i rutan
+        public bool SendNumbersToSquare(int row, int column, List<int> numbers)
+        {
+            if(squares[row,column].IsSolved == false)
+                return squares[row, column].RemovePossibleNum(numbers);
+
+            return false;
+        }
 
     }
 }

@@ -10,14 +10,8 @@ namespace Sudoku
     {
         static void Main(string[] args)
         {
-            Board board = new Board("619030040270061008000047621486302079000014580031009060005720806320106057160400030");
-            board.PrintBoard();
-
-            foreach (var number in board.GetNumbersInColumn(0))
-            {
-                Console.WriteLine(number);
-            }
-            Console.WriteLine();
+            Suduko suduko = new Suduko("619030040270061008000047621486302079000014580031009060005720806320106057160400030");            
+            suduko.Solved();
         }
     }
 }
