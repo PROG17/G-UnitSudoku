@@ -28,13 +28,13 @@ namespace Sudoku
         //ta bort möjliga nummber från ruta
         public bool RemovePossibleNum(List<int> numbers)
         {
-            bool someThingChanged = false;
+            bool somethingChanged = false;
             foreach (var number in numbers)
             {
                 if(canBeNumber[number-1] == true)
                 {
                     canBeNumber[number - 1] = false;
-                    someThingChanged = true;
+                    somethingChanged = true;
                 }
             }
 
@@ -62,7 +62,7 @@ namespace Sudoku
                 IsSolved = true;
             }
 
-            return true;
+            return somethingChanged;
         }
     }
 }

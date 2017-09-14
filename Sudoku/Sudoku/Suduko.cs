@@ -29,7 +29,9 @@ namespace Sudoku
                     {
                         //om något ändrats kör loopen igen
                         if (board.SendNumbersToSquare(row, column, numbers))
+                        {
                             somethingChanged = true;
+                        }
                     }
                 }
 
@@ -45,7 +47,6 @@ namespace Sudoku
                         }
                     }
                 }
-            
             }
 
             board.PrintBoard();
