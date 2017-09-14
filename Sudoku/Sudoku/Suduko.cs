@@ -48,21 +48,25 @@ namespace Sudoku
                         }
                     }
                 }
-                for (int row = 0; row < 3; row++)
+                
+                
+                for (int boxRow = 0; boxRow < 3; boxRow++)
                 {
-                    for (int column = 0; column < 3; column++)
+                    for (int boxColumn = 0; boxColumn < 3; boxColumn++)
                     {
-                        List<int> numbers = board.GetNumberInBox(row, column);
-                        for (int i = 0; i < 9; i++)
+                        List<int> numbers = board.GetNumberInBox(boxRow, boxColumn);
+
+                        for (int row = boxRow * 3; row < 3 * (boxRow + 1); row++)
                         {
-                            int r = row/3;
-                            int c = column % 3;
-                            if (board.SendNumbersToSquare(r, c, numbers))
+                            for (int column = boxColumn * 3; column < 3 * (boxColumn + 1); column++)
                             {
-                                somethingChanged = true;
+
+                                if (board.SendNumbersToSquare(row, column, numbers))
+                                {
+                                    somethingChanged = true;
+                                }
                             }
                         }
-
                     }
                 }
             }

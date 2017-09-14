@@ -76,8 +76,10 @@ namespace Sudoku
                     }
                 }
             }
+
             return numberList;
         }
+
         public List<int> GetNumbersInRow(int row)
         {
             var numberList = new List<int>();
