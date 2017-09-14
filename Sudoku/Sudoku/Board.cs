@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,29 +16,40 @@ namespace Sudoku
 
         public Board(string inputNumbers)
         {
+            //fill all the board positions with squares
             for (int row = 0; row < height; row++)
             {
                 for (int column = 0; column < width; column++)
                 {
-                    int index = column + row * 9;
+                    int index = column + row * width;
                     int number = int.Parse(inputNumbers[index].ToString());
-
                     Square square = new Square(number);
                     squares[row, column] = square;
                 }
             }
         }
 
+        //Method that prints the suduko board to the console.
         public void PrintBoard()
         {
             for (int row = 0; row < height; row++)
             {
-                Console.WriteLine("-------------------------");
+                if (row % 3 == 0)
+                {
+                    Console.WriteLine("-------------------------");
+                }
+
                 Console.Write("| ");
                 for (int column = 0; column < width; column++)
                 {
                     int squareNumber = squares[row, column].SquareValue;
-                    Console.Write(squareNumber+ " ");
+
+                    if (squareNumber != 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    Console.Write(squareNumber + " ");
+                    Console.ForegroundColor = ConsoleColor.Gray;
 
                     if (column % 3 == 2)
                     {
@@ -45,9 +57,9 @@ namespace Sudoku
                     }
                 }
 
-                
                 Console.WriteLine();
             }
+
             Console.WriteLine("-------------------------");
         }
     }
