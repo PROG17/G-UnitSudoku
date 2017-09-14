@@ -89,5 +89,7 @@ namespace Sudoku
             }
             return numberList;
         }
+
+
     }
 }
