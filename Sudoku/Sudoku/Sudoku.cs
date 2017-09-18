@@ -35,6 +35,11 @@ namespace Sudoku
             //Skriver ut lösta eller olösta brädet
             board.PrintBoard();
             Console.WriteLine("Är löst: " + board.IsSolved());
+            if (board.IsSolved() != true)
+            {
+                BruteForce(0);
+                board.PrintBoard();
+            }
         }
 
         private bool CheckRows()
@@ -103,9 +108,39 @@ namespace Sudoku
 
             return somethingChanged;
         }
-        private void BruteForce()
+        private bool BruteForce(int currentSquare)
         {
-            
+            int row = currentSquare / 9;
+            int column = currentSquare % 9;
+            bool isSolved = false;
+
+            if (board.IsSquareSolved(row, column))
+            {
+                if (currentSquare < 80)
+                    isSolved = BruteForce(currentSquare + 1);
+                else
+                    return board.IsSolved();
+            }
+            else
+            {
+                for (int i = 1; i <= 9; i++)
+                {
+                    board.SetSquareToNum(row, column, i);
+                    if(currentSquare < 80)
+                        isSolved = BruteForce(currentSquare + 1);
+                    else
+                    {
+                        isSolved = board.IsSolved();
+                    }
+
+                    if (isSolved)
+                        return isSolved;
+
+                    Console.WriteLine("row" + row + "," + column);
+                }
+            }
+
+            return isSolved;
         }
     }   
 }   

@@ -165,5 +165,15 @@ namespace Sudoku
 
             return true;
         }
+
+        public void SetSquareToNum(int row, int column, int value)
+        {
+            squares[row, column].SquareValue = value;
+        }
+
+        public bool IsSquareSolved(int row, int column)
+        {
+            return squares[row, column].IsSolved;
+        }
     }
 }
