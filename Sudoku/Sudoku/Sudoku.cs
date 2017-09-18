@@ -9,7 +9,7 @@ namespace Sudoku
 {
     class Sudoku
     {
-        Board board;
+        Board board;    
 
         public Sudoku(string numbers)
         {
@@ -35,6 +35,7 @@ namespace Sudoku
             //Skriver ut lösta eller olösta brädet
             board.PrintBoard();
             Console.WriteLine("Är löst: " + board.IsSolved());
+            
             if (board.IsSolved() != true)
             {
                 BruteForce(0);
@@ -108,6 +109,7 @@ namespace Sudoku
 
             return somethingChanged;
         }
+        
         private bool BruteForce(int currentSquare)
         {
             int row = currentSquare / 9;
@@ -119,26 +121,37 @@ namespace Sudoku
                 if (currentSquare < 80)
                     isSolved = BruteForce(currentSquare + 1);
                 else
-                    return board.IsSolved();
+                {
+                    isSolved = board.IsSolved();
+                }
             }
             else
             {
                 for (int i = 1; i <= 9; i++)
                 {
-                    board.SetSquareToNum(row, column, i);
-                    if(currentSquare < 80)
-                        isSolved = BruteForce(currentSquare + 1);
-                    else
+
+                    if (board.GetNumbersInRow(row).Contains(i) == false && 
+                        board.GetNumbersInColumn(column).Contains(i) == false &&
+                        board.GetNumbersInBox(row/3, column/3).Contains(i) == false)
                     {
-                        isSolved = board.IsSolved();
+                        board.SetSquareToNum(row, column, i);
+                        if(currentSquare < 80)
+                            isSolved = BruteForce(currentSquare + 1);
+                        else
+                        {
+                            isSolved = board.IsSolved();
+                        }
                     }
 
                     if (isSolved)
                         return isSolved;
+                   //board.PrintBoard();
 
-                    Console.WriteLine("row" + row + "," + column);
                 }
             }
+
+            if(isSolved == false && board.IsSquareSolved(row, column) == false)
+                board.SetSquareToNum(row,column,0);
 
             return isSolved;
         }
