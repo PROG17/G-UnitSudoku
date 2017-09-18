@@ -16,7 +16,7 @@ namespace Sudoku
             board = new Board(numbers);     // Skapa upp sudokubräde.
 
         }
-        
+
         public void Solve()
         {
             bool somethingChanged = true;   // Variabel som håller koll på om solvern fortafarande kan göra någongting. 
@@ -34,6 +34,7 @@ namespace Sudoku
             }
             //Skriver ut lösta eller olösta brädet
             board.PrintBoard();
+            Console.WriteLine("Är löst: " + board.IsSolved());
         }
 
         private bool CheckRows()
@@ -75,7 +76,7 @@ namespace Sudoku
 
             return somethingChanged;
         }
-        
+
         private bool CheckBoxes() //Går igenom alla "Boxar"
         {
             bool somethingChanged = false;
@@ -91,7 +92,7 @@ namespace Sudoku
                         for (int column = boxColumn * 3; column < 3 * (boxColumn + 1); column++) //Går igenom kolumner i boxen
                         {
                             //send information till ruta och ses om något ändras
-                            if (board.SendNumbersToSquare(row, column, numbers)) 
+                            if (board.SendNumbersToSquare(row, column, numbers))
                             {
                                 somethingChanged = true;
                             }
@@ -102,6 +103,9 @@ namespace Sudoku
 
             return somethingChanged;
         }
-    
+        private void BruteForce()
+        {
+            
+        }
     }   
 }   

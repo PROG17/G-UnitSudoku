@@ -120,5 +120,35 @@ namespace Sudoku
             return false;
         }
 
+        public bool IsSolved()
+        {
+            for (int row = 0; row < height; row++)
+            {
+                List<int> rowNumbers = GetNumbersInRow(row);
+                rowNumbers.Sort();
+                for (int i = 0; i < width; i++)
+                {
+                    if (rowNumbers[i] != i+1)
+                    {
+                        return false;
+                    }
+                }
+            }
+            for (int column = 0; column < width; column++)
+            {
+                List<int> columnNumbers = GetNumbersInColumn(column);
+                columnNumbers.Sort();
+                for (int i = 0; i < height; i++)
+                {
+                    if (columnNumbers[i] != i+1)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+
+            return true;
+        }
     }
 }
