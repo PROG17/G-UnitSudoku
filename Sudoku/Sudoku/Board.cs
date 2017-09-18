@@ -125,6 +125,7 @@ namespace Sudoku
             for (int row = 0; row < height; row++)
             {
                 List<int> rowNumbers = GetNumbersInRow(row);
+                if (rowNumbers.Count != 9) return false;
                 rowNumbers.Sort();
                 for (int i = 0; i < width; i++)
                 {
@@ -134,9 +135,11 @@ namespace Sudoku
                     }
                 }
             }
+
             for (int column = 0; column < width; column++)
             {
                 List<int> columnNumbers = GetNumbersInColumn(column);
+                if (columnNumbers.Count != 9) return false;
                 columnNumbers.Sort();
                 for (int i = 0; i < height; i++)
                 {
@@ -151,6 +154,7 @@ namespace Sudoku
                 for (int boxColumn = 0; boxColumn < 3; boxColumn++)
                 {
                     List<int> boxNumbers = GetNumbersInBox(boxRow, boxColumn);
+                    if (boxNumbers.Count != 9) return false;
                     boxNumbers.Sort();
                     for (int i = 0; i < 9; i++)
                     {

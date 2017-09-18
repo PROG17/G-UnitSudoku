@@ -14,7 +14,6 @@ namespace Sudoku
         public Sudoku(string numbers)
         {
             board = new Board(numbers);     // Skapa upp sudokubräde.
-
         }
 
         public void Solve()
@@ -38,8 +37,10 @@ namespace Sudoku
             
             if (board.IsSolved() != true)
             {
+                
                 BruteForce(0);
                 board.PrintBoard();
+                
             }
         }
 
@@ -139,7 +140,9 @@ namespace Sudoku
                             isSolved = BruteForce(currentSquare + 1);
                         else
                         {
+                            //board.PrintBoard();
                             isSolved = board.IsSolved();
+                            //Console.WriteLine("löst?" + board.IsSolved());
                         }
                     }
 
