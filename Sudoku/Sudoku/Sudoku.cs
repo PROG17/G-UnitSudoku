@@ -34,7 +34,7 @@ namespace Sudoku
             }
             //Skriver ut lösta eller olösta brädet
             board.PrintBoard();
-            Console.WriteLine("Är löst: " + board.IsSolved());
+            Console.WriteLine("Ingen logisk lösning kunde hittas. Startar bruteforce.");
             
             if (board.IsSolved() != true)
             {
@@ -145,8 +145,6 @@ namespace Sudoku
 
                     if (isSolved)
                         return isSolved;
-                   //board.PrintBoard();
-
                 }
             }
 
