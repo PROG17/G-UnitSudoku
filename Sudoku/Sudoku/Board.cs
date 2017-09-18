@@ -62,7 +62,7 @@ namespace Sudoku
 
             Console.WriteLine("-------------------------");
         }
-        
+
         // Hittar alla befintliga nummer i box
         public List<int> GetNumbersInBox(int boxRow, int boxColumn)
         {
@@ -91,7 +91,7 @@ namespace Sudoku
                 {
                     numberList.Add(squares[row, column].SquareValue); // Lägger till befintliga nummer i lista av upptagna nummer
                 }
-                
+
             }
             return numberList;
         }
@@ -114,12 +114,12 @@ namespace Sudoku
         //skicka nummer som inte kan finnas i rutan
         public bool SendNumbersToSquare(int row, int column, List<int> numbers)
         {
-            if(squares[row,column].IsSolved == false)
+            if (squares[row, column].IsSolved == false)
                 return squares[row, column].RemovePossibleNum(numbers);
 
             return false;
         }
-
+        //kollar om hela spelbrädet är löst
         public bool IsSolved()
         {
             for (int row = 0; row < height; row++)
@@ -128,7 +128,7 @@ namespace Sudoku
                 rowNumbers.Sort();
                 for (int i = 0; i < width; i++)
                 {
-                    if (rowNumbers[i] != i+1)
+                    if (rowNumbers[i] != i + 1)
                     {
                         return false;
                     }
@@ -140,9 +140,24 @@ namespace Sudoku
                 columnNumbers.Sort();
                 for (int i = 0; i < height; i++)
                 {
-                    if (columnNumbers[i] != i+1)
+                    if (columnNumbers[i] != i + 1)
                     {
                         return false;
+                    }
+                }
+            }
+            for (int boxRow = 0; boxRow < 3; boxRow++)
+            {
+                for (int boxColumn = 0; boxColumn < 3; boxColumn++)
+                {
+                    List<int> boxNumbers = GetNumbersInBox(boxRow, boxColumn);
+                    boxNumbers.Sort();
+                    for (int i = 0; i < 9; i++)
+                    {
+                        if (boxNumbers[i] != i + 1)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
