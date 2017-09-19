@@ -16,7 +16,7 @@ namespace Sudoku
 
         public Board(string inputNumbers)
         {
-            //yller alla brädceller med nummer
+            //Fyller alla brädceller med squares(rutor) och nummer
             for (int row = 0; row < height; row++)
             {
                 for (int column = 0; column < width; column++)
@@ -119,9 +119,11 @@ namespace Sudoku
 
             return false;
         }
+        
         //kollar om hela spelbrädet är löst
         public bool IsSolved()
         {
+            //kollar om nummer 1-9 finns i varje rad, retunerar false om det inte stämmer
             for (int row = 0; row < height; row++)
             {
                 List<int> rowNumbers = GetNumbersInRow(row);
@@ -136,6 +138,7 @@ namespace Sudoku
                 }
             }
 
+            //kollar om nummer 1-9 finns i varje column, retunerar false om det inte stämmer
             for (int column = 0; column < width; column++)
             {
                 List<int> columnNumbers = GetNumbersInColumn(column);
@@ -149,6 +152,8 @@ namespace Sudoku
                     }
                 }
             }
+
+            //kollar om nummer 1-9 finns i varje box, retunerar false om det inte stämmer
             for (int boxRow = 0; boxRow < 3; boxRow++)
             {
                 for (int boxColumn = 0; boxColumn < 3; boxColumn++)
@@ -166,15 +171,17 @@ namespace Sudoku
                 }
             }
 
-
+            //pusslet har en korrekt lösning
             return true;
         }
 
+        //Sätter en ruta till ett specifikt värde
         public void SetSquareToNum(int row, int column, int value)
         {
             squares[row, column].SquareValue = value;
         }
 
+        //Kollar om en ruta redan är löst
         public bool IsSquareSolved(int row, int column)
         {
             return squares[row, column].IsSolved;

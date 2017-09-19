@@ -9,7 +9,7 @@ namespace Sudoku
 {
     class Sudoku
     {
-        Board board;    
+        Board board;
 
         public Sudoku(string numbers)
         {
@@ -33,15 +33,15 @@ namespace Sudoku
             }
             //Skriver ut lösta eller olösta brädet
             board.PrintBoard();
-            Console.WriteLine("Ingen logisk lösning kunde hittas. Startar bruteforce.");
-            
+
+            //om sudoku brädet inte är löst starta bruteforce
             if (board.IsSolved() != true)
             {
-                
-                BruteForce(0);
+                Console.WriteLine("Ingen logisk lösning kunde hittas. Startar bruteforce.");
+                BruteForce(0); //starta på ruta noll, går igenom alla möjliga lösningar tills en lösning hittats
                 board.PrintBoard();
-                
             }
+
         }
 
         private bool CheckRows()
@@ -110,51 +110,61 @@ namespace Sudoku
 
             return somethingChanged;
         }
-        
-        private bool BruteForce(int currentSquare)
-        {
-            int row = currentSquare / 9;
-            int column = currentSquare % 9;
-            bool isSolved = false;
 
+        private bool BruteForce(int currentSquare) //Testar alla möjliga lösningar
+        {
+
+            int row = currentSquare / 9; //vilken rad nuvarande ruta är på
+            int column = currentSquare % 9; //vilken column nuvarande ruta är på
+            bool isSolved = false; //blir true om en lösning hittats
+
+            //om den nuvarande rutan redan har ett bekräftat korrekt nummer
             if (board.IsSquareSolved(row, column))
             {
+                /*om det inte är sista rutan, bruteforce på nästa ruta i soduku 
+                 * annars testa om en lösning hittats*/
                 if (currentSquare < 80)
+                {
                     isSolved = BruteForce(currentSquare + 1);
+                }
                 else
                 {
                     isSolved = board.IsSolved();
                 }
             }
-            else
+            else //om nuvarande ruta inte har ett bekräftat korrekt nummer
             {
-                for (int i = 1; i <= 9; i++)
+                for (int i = 1; i <= 9; i++) //lopa igenom alla möjliga nummer
                 {
 
-                    if (board.GetNumbersInRow(row).Contains(i) == false && 
+                    /*om raden, columnen och boxen inte innehåller nummer i,
+                    testa att sätta rutan till nuvarande nummer*/
+                    if (board.GetNumbersInRow(row).Contains(i) == false &&
                         board.GetNumbersInColumn(column).Contains(i) == false &&
-                        board.GetNumbersInBox(row/3, column/3).Contains(i) == false)
+                        board.GetNumbersInBox(row / 3, column / 3).Contains(i) == false)
                     {
                         board.SetSquareToNum(row, column, i);
-                        if(currentSquare < 80)
+                        if (currentSquare < 80)
+                        {
                             isSolved = BruteForce(currentSquare + 1);
+                        }
                         else
                         {
-                            //board.PrintBoard();
                             isSolved = board.IsSolved();
-                            //Console.WriteLine("löst?" + board.IsSolved());
                         }
                     }
 
+                    //om lösning hittats retunera true till förgående ruta (eller till platsen som anropade metoden)
                     if (isSolved)
                         return isSolved;
                 }
             }
 
-            if(isSolved == false && board.IsSquareSolved(row, column) == false)
-                board.SetSquareToNum(row,column,0);
+            //om vi inte hittat en lösning och rutan inte är bekräftat korrect, nollställ ruta
+            if (isSolved == false && board.IsSquareSolved(row, column) == false)
+                board.SetSquareToNum(row, column, 0);
 
             return isSolved;
         }
-    }   
-}   
+    }
+}
