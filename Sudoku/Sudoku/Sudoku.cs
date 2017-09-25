@@ -42,6 +42,11 @@ namespace Sudoku
                 board.PrintBoard();
             }
 
+            if (board.IsSolved() == false)
+            {
+                Console.WriteLine("Det finns ingen lösning till denna bräda.");
+            }
+
         }
 
         private bool CheckRows()
