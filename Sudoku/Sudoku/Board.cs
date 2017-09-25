@@ -22,8 +22,24 @@ namespace Sudoku
                 for (int column = 0; column < width; column++)
                 {
                     int index = column + row * width;
-                    int number = int.Parse(inputNumbers[index].ToString());
-                    Square square = new Square(number);
+                    int number;
+                    Square square;
+                    
+                    //om det är mindre nummer i strängen än rutor i ett sudokobräde
+                    if (inputNumbers.Length <= index)
+                    {
+                        square = new Square(0);
+                    }
+                    //om lyckas omvandla "bokstav" till siffra
+                    else if (int.TryParse(inputNumbers[index].ToString(), out number))
+                    {
+                         square = new Square(number);
+                    }
+                    //annars får rutan vädret 0
+                    else
+                    {
+                        square = new Square(0);
+                    }
                     squares[row, column] = square;
                 }
             }
