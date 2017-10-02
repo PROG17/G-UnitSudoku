@@ -171,5 +171,11 @@ namespace Sudoku
 
             return isSolved;
         }
+        
+        //för att testa programmet
+        public string GetSudokuAsString()
+        {
+            return board.GetBoard();
+        }
     }
 }

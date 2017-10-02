@@ -202,5 +202,20 @@ namespace Sudoku
         {
             return squares[row, column].IsSolved;
         }
+
+        //för testning av board
+        public string GetBoard()
+        {
+            string numbers = "";
+            for (int row = 0; row < 9; row++)
+            {
+                for (int col = 0; col < 9; col++)
+                {
+                    numbers += squares[row, col].SquareValue;
+                }
+            }
+
+            return numbers;
+        }
     }
 }
