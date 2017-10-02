@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sudoku
 {
-    class Sudoku
+    public class Sudoku
     {
         Board board;
 
@@ -176,6 +176,12 @@ namespace Sudoku
         public string GetSudokuAsString()
         {
             return board.GetBoard();
+        }
+
+        //för att testa programmet
+        public bool IsSolved()
+        {
+            return board.IsSolved();
         }
     }
 }
